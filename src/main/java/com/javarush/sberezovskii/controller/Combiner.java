@@ -1,7 +1,6 @@
 package com.javarush.sberezovskii.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javarush.sberezovskii.configs.MySessionFactory;
 import com.javarush.sberezovskii.constants.Constants;
