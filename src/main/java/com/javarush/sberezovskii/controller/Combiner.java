@@ -48,19 +48,8 @@ public class Combiner {
         List<City> allCities = fetchData();
         List<CityCountry> preparedData = transformData(allCities);
         pushToRedis(preparedData);
-
         getSessionFactory().getCurrentSession().close();
-        List<Integer> ids = List.of(10, 4070, 256, 79, 189, 89, 2508, 1500, 1999, 5);
-
-        long startRedis = System.currentTimeMillis();
-        testRedisData(ids);
-        long stopRedis = System.currentTimeMillis();
-        long startMySQL = System.currentTimeMillis();
-        testMySQLData(ids);
-        long stopMySQL = System.currentTimeMillis();
-
-        System.out.printf("%s:\t%d ms\n", "Redis", (stopRedis - startRedis));
-        System.out.printf("%s:\t%d ms\n", "MySQL", (stopMySQL - startMySQL));
+        checkAccessRedisAndMySQL();
 
     }
 
@@ -168,6 +157,20 @@ public class Combiner {
             }
             session.getTransaction().commit();
         }
+    }
+
+    private void checkAccessRedisAndMySQL() {
+        List<Integer> ids = List.of(10, 4070, 256, 79, 189, 89, 2508, 1500, 1999, 5);
+
+        long startRedis = System.currentTimeMillis();
+        testRedisData(ids);
+        long stopRedis = System.currentTimeMillis();
+        long startMySQL = System.currentTimeMillis();
+        testMySQLData(ids);
+        long stopMySQL = System.currentTimeMillis();
+
+        System.out.printf("%s:\t%d ms\n", "Redis", (stopRedis - startRedis));
+        System.out.printf("%s:\t%d ms\n", "MySQL", (stopMySQL - startMySQL));
     }
 
 }
