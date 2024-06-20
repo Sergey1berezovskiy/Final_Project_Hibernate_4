@@ -55,7 +55,6 @@ public class Combiner {
         long startRedis = System.currentTimeMillis();
         testRedisData(ids);
         long stopRedis = System.currentTimeMillis();
-
         long startMySQL = System.currentTimeMillis();
         testMySQLData(ids);
         long stopMySQL = System.currentTimeMillis();
